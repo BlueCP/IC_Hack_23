@@ -1,0 +1,1 @@
+/home/marcus/Pictures/test_image.jpeg 696,189,1039,331,nike2,0.43,0.967
