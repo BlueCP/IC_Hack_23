@@ -15,8 +15,9 @@ def wiki_page_scrape(_brand_name):
     )
 
     if (response.status_code != 200):
-        print("Brand Name: ", brand_name)
-        print("Something wrong, response status code is: ", response.status_code)
+	return -1
+        #print("Brand Name: ", brand_name)
+        #print("Something wrong, response status code is: ", response.status_code)
 
     keywords_occurences = {}
 
