@@ -21,6 +21,10 @@ def query():
     else:
         return render_template('query.html')
 
+
+camera = cv2.VideoCapture(0)
+
+
 '''
 @app.route('/hello_world')
 def hello_world():
