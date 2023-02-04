@@ -6,17 +6,17 @@ import numpy as np
 from threading import Thread
 
 
-global capture, rec_frame #, grey, switch, neg, face, rec, out
+global capture, rec_frame, grey, switch, neg, face, rec, out, camera
 capture=0
-# grey=0
-# neg=0
-# face=0
-# switch=1
-# rec=0
+grey=0
+neg=0
+face=0
+switch=1
+rec=0
 
 #make shots directory to save pics
 try:
-    os.mkdir('./shots')
+    os.mkdir('shots')
 except OSError as error:
     pass
 
@@ -32,8 +32,8 @@ def record(out):
         time.sleep(0.05)
         out.write(rec_frame)
 
-def gen_frames():  # generate frame by frame from camera
-    global out, capture,rec_frame
+def gen_frames(camera):  # generate frame by frame from camera
+    global out,capture,rec_frame
     while True:
         success, frame = camera.read()
         if success:
