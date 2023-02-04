@@ -1,0 +1,8 @@
+from get_report import *
+
+last_brand = ''
+
+def update_brand(brand_name):
+    if brand_name != last_brand:
+        last_brand = brand_name
+        get_report(brand_name)
