@@ -1,19 +1,16 @@
 from app import handle_request
 from WebScraping.wiki_page_scrape import wiki_page_scrape
 
+def add_score(score_map, score_name, func_name, brand_name):
+    score = func_name(brand_name)
+    if (score != -1): # -1 means we failed to get data from this category
+        score_map[score_name] = score
+
 def get_report(brand_name):
     score_map = {}
     
-    wiki_score = wiki_page_scrape(brand_name)
-    if (wiki_score != -1): # -1 means we failed to get data from this category
-        score_map["wiki_score"] = wiki_score # Wikipedia store
+    add_score(score_map, "wiki_score", wiki_page_scrape, brand_name)
+    add_score(score_map, "transparency_score", get_transparency_score, brand_name)
+    add_score(score_map, "footprint_score", get_footprint_score, brand_name)
     
-    transparency_score = get_transparency_score(brand_name)
-    if (transparency_score != -1):
-        score_map["transparency_score"] = transparency_score
-
-    footprint_score = get_footprint_score(brand_name)
-    if (footprint_score != -1):
-        score_map["footprint_score"] = footprint_score
-
     handle_request(score_map)
