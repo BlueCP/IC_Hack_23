@@ -4,7 +4,8 @@ import requests
 
 keywords = ["mistreatment", "slavery", "child labor", "child labour", "abuse", "forced labor", "forced labour", "human rights", "sweatshops"]
 
-def wiki_page_scrape(brand_name):
+def wiki_page_scrape(_brand_name):
+    brand_name = _brand_name.capitalize().replace(' ', '_')
     suffix = ""
     if brand_name == "Nike":
         suffix = "_(company)"
