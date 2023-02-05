@@ -1,5 +1,7 @@
 # Write-up
 
+![](https://user-images.githubusercontent.com/29378769/216816959-5b25773b-4fe5-4656-bf67-d2cf34138ec8.png)
+
 ## Inspiration
 
 It has become increasingly clear in recent years that people want to know how they can contribute to the global sustainability effort. One way of doing this is by leveraging the free market, buying from companies which have upheld their social responsibilities, and avoiding those that haven’t. However, it is time-consuming for the average consumer to conduct this research on their own, so we have developed a tool to help.
