@@ -1,5 +1,7 @@
 # Write-up
 
+![](https://user-images.githubusercontent.com/29378769/216816959-5b25773b-4fe5-4656-bf67-d2cf34138ec8.png)
+
 ## Inspiration
 
 It has become increasingly clear in recent years that people want to know how they can contribute to the global sustainability effort. One way of doing this is by leveraging the free market, buying from companies which have upheld their social responsibilities, and avoiding those that haven’t. However, it is time-consuming for the average consumer to conduct this research on their own, so we have developed a tool to help.
@@ -17,16 +19,17 @@ Our web application scans a branded product, identifies the company, and display
 - To recognise logos, we used a freely available logo detection API, which itself uses Keras, a high-level API for TensorFlow.
 
 ## How it works
-Show a product with a brand name in front of the camera, after sometime the application will show scores based on certain criteras (controversial, transparency, CO2 emission,...) and some headlines of controversies of the brand on the internet.
+We have a live video feed from the webcam where we periodically take a screenshot and asynchronously send this to a backend computer vision model which does object detection and matches the recognised objects against well-known corporate brands. The brand name is then fed to three different data extractors, one web scraping Wikipedia to lookg for controversies, transparencies, etc., another for checking a database with results from the [transparency index study](https://crni.ie/content/uploads/2020/04/FR_FashionTransparencyIndex2020.pdf), [human rights friendliness scores](https://www.worldbenchmarkingalliance.org/publication/chrb/rankings/type/ungp/industry-apparel/) (To be added to the project), and https://data.cdp.net/ . This data is then summarised in a report that is presented to the user.
+
 
 ## Challenges
-1. Figure out a way to compute the controversy index of a brand (if a company has more and more "bad" keywords associated to it, the lower the controversy index).
-2. Summarize controversies into 1 or 2 sentences highlighting the controversies of the brand.
-
 - None of our group had any significant experience with web development prior to this project.
+- Figuring out a way to compute the controversy index of a brand (if a company has more and more "bad" keywords associated to it, the lower the controversy index).
+- Summarising controversies into 1 or 2 sentences highlighting the controversies of the brand.
+- Adapting the computer vision model to recognising brand logos.
 
 ## Accomplishments
-Build a web application from front end to back end summarizing information about the brand.
+We managed to successfully build a web application from the front-end to the back-end summarising information about the brand.
 
 ## What's next
 
