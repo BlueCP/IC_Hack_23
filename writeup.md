@@ -22,6 +22,7 @@ Show a product with a brand name in front of the camera, after sometime the appl
 ## Challenges
 
 ## Accomplishments
+Build a web application from front end to back end summarizing information about the brand.
 
 ## What's next
 
