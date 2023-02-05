@@ -20,9 +20,10 @@ Our web application scans a branded product, identifies the company, and display
 Show a product with a brand name in front of the camera, after sometime the application will show scores based on certain criteras (controversial, transparency, CO2 emission,...) and some headlines of controversies of the brand on the internet.
 
 ## Challenges
+- None of our group had any significant experience with web development prior to this project.
 
 ## Accomplishments
-Build a web application from front end to back end summarizing information about the brand.
+- We built a web application from front end to back end summarizing information about the brand.
 
 ## What's next
 
