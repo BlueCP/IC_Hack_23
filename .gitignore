@@ -1,0 +1,12 @@
+*.swp
+__pycache__*
+__pycache__/*
+*.pyc
+brand-recogniser-model/src/inception_logo_features_200_trunc2.hdf5
+brand-recogniser-model/src/vgg16_logo_features_128.hdf5
+brand_recogniser_model/src/inception_logo_features_200_trunc2.hdf5
+brand_recogniser_model/src/vgg16_logo_features_128.hdf5
+brand-recogniser-model/*
+shots/*
+output_temp/*
+.idea/*
