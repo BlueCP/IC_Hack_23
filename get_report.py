@@ -1,4 +1,5 @@
 from WebScraping.wiki_page_scrape import wiki_page_scrape
+from get_transparency_score import get_transparency_score
 
 def add_score(score_map, score_name, func_name, brand_name):
     score = func_name(brand_name)
