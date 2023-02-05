@@ -20,10 +20,13 @@ Our web application scans a branded product, identifies the company, and display
 Show a product with a brand name in front of the camera, after sometime the application will show scores based on certain criteras (controversial, transparency, CO2 emission,...) and some headlines of controversies of the brand on the internet.
 
 ## Challenges
+1. Figure out a way to compute the controversy index of a brand (if a company has more and more "bad" keywords associated to it, the lower the controversy index).
+2. Summarize controversies into 1 or 2 sentences highlighting the controversies of the brand.
+
 - None of our group had any significant experience with web development prior to this project.
 
 ## Accomplishments
-- We built a web application from front end to back end summarizing information about the brand.
+Build a web application from front end to back end summarizing information about the brand.
 
 ## What's next
 
