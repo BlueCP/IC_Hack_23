@@ -10,3 +10,5 @@ brand-recogniser-model/*
 shots/*
 output_temp/*
 .idea/*
+.virtual_documents/*
+.virtual_documents/

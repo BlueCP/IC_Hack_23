@@ -1,1 +1,1 @@
-FLASK_APP=app.py flask  run --debugger
+FLASK_APP=hello.py flask  run --debugger

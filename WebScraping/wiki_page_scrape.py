@@ -1,51 +1,33 @@
 import re
+import math
+
 from bs4 import BeautifulSoup
+
 import requests
+import sys
 
 keywords = ["controversy", "mistreatment", "slavery", "child labor", "child labour", "abuse", "forced labor", "forced labour", "human rights", "sweatshops"]
 
 def transformed_brand_name(_brand_name):
-    return _brand_name.lower().capitalize().replace(' ', '_').replace('&', '%26')
-
-def headline_sentences(_brand_name):
-    brand_name = transformed_brand_name(_brand_name)
-    suffix = ""
-    if brand_name == "Nike":
-        suffix = "_(company)"
-        
-    if brand_name == "Walkers":
-        suffix = "_(snack_foods)"
-
-    response = requests.get(
-	    url=f"https://en.wikipedia.org/wiki/{brand_name}{suffix}",
-    )
-
-    if (response.status_code != 200): # Didn't find wiki link of brand name
-        return -1
-
-    soup = BeautifulSoup(response.content, "html.parser")
-    all_bad_sens = []
-    
-    for keyword in keywords:
-        bad_sens = soup.find_all(text=re.compile(fr'\b{keyword}\b'))
-        for sen in bad_sens:
-            if 20 <= len(sen) and len(sen) <= 240:
-                all_bad_sens.append(sen)
-    
-    return "..." + max(all_bad_sens, key = len) + "..."
+    new_name = _brand_name.lower().capitalize().replace(' ', '_').replace('&', '%26')
+    print(new_name, file=sys.stdout)
+    return new_name
 
 def wiki_page_scrape(_brand_name):
     brand_name = transformed_brand_name(_brand_name)
     suffix = ""
     if brand_name == "Nike":
         suffix = "_(company)"
+    if brand_name == "Walkers":
+        suffix = "_(snack_foods)"
 
-    response = requests.get(
-	    url=f"https://en.wikipedia.org/wiki/{brand_name}{suffix}",
-    )
+    url = f"https://en.wikipedia.org/wiki/{brand_name}{suffix}"
+
+    response = requests.get(url)
 
     if (response.status_code != 200): # Didn't find wiki link of brand name
-        return -1
+        print(f"Couldn't find wiki link of brand name: {url}", file=sys.stdout)
+        return None
 
     keywords_occurences = {}
 
@@ -53,7 +35,10 @@ def wiki_page_scrape(_brand_name):
 
     for keyword in keywords:
         keywords_occurences[keyword] = soup.get_text().count(keyword)
-    return keywords_occurences
+    if sum(keywords_occurences.values()) == 0:
+        return None
+    else:
+        return scoring_brand_algorithm(keywords_occurences)
 
 #headline_nike = headline_sentences("Nike")
 #print(headline_nike)
@@ -63,3 +48,8 @@ def wiki_page_scrape(_brand_name):
 
 #headline_walkers = headline_sentences("Walkers")
 #print(headline_walkers)
+
+def scoring_brand_algorithm(keywords_occurences):
+    sumOccurences = sum(keywords_occurences.values())
+    _lambda = 0.25
+    return 1 - math.e ** (-_lambda * sumOccurences)

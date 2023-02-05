@@ -1,17 +1,34 @@
-from WebScraping.wiki_page_scrape import wiki_page_scrape
-from get_transparency_score import get_transparency_score
+import numpy as np
+import sys
+import pandas as pd
 
-def add_score(score_map, score_name, func_name, brand_name):
-    score = func_name(brand_name)
-    if (score != -1): # -1 means we failed to get data from this category
-        score_map[score_name] = score
+from WebScraping.wiki_page_scrape import wiki_page_scrape
 
 def get_report(brand_name):
     score_map = {}
-    
-    add_score(score_map, "wiki_score", wiki_page_scrape, brand_name)
-    add_score(score_map, "transparency_score", get_transparency_score, brand_name)
-    score_map["average_score"] = (add_score["wiki_score"] + add_score["transparency_score"]) / 2.0
-    #add_score(score_map, "footprint_score", get_footprint_score, brand_name)
-    
+
+    transparency_score = get_transparency_score(brand_name)
+    wiki_score = wiki_page_scrape(brand_name)
+
+    scores = [transparency_score, wiki_score]
+    score_map['trans_score'] = transparency_score
+    score_map['wiki_score'] = wiki_score
+
+    print(wiki_score, file=sys.stdout)
+
+    # remove Nones from scores
+    existingScores = [x for x in scores if x is not None]
+
+    if len(existingScores) > 0:
+        score_map['mean_score'] = np.mean(existingScores)
+    else:
+        score_map['mean_score'] = None
     return (score_map)
+
+def get_transparency_score(brand_name):
+    df = pd.read_csv('transparency-scores.csv')
+    entry = df[df['Brand Name'].str.replace(' ', '_').str.replace('&', '-').str.lower() == brand_name]
+    score = None
+    if len(entry) > 0:
+        score = float(entry['2020 Final scores']) / df['2020 Final scores'].values.max()
+    return score

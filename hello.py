@@ -13,6 +13,8 @@ import os, sys
 import numpy as np
 import pathlib
 
+from get_report import get_report
+
 from threading import Thread
 
 
@@ -53,6 +55,7 @@ def handle_request(product_name):
 @app.route('/')
 def welcome():
     # return redirect(url_for('query'))
+    print(get_report("walkers"), file=sys.stdout)
     return render_template('camera-example.html')
 
 @app.route('/query')
@@ -109,10 +112,6 @@ def tasks():
     elif request.method=='GET':
         return render_template('camera-example.html')
     return render_template('camera-example.html')
-
-@app.route('/video_feed')
-def video_feed():
-    return Response(webcam.gen_frames(camera), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
 '''
