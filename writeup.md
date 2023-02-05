@@ -25,7 +25,7 @@ Show a product with a brand name in front of the camera, after sometime the appl
 
 
 ## Accomplishments
-Build a web application from front end to back end gathering critical information about the brand.
+Build a web application from front end to back end gathering critical information about the brand while detecting the brand live on the camera.
 
 ## What's next
 
