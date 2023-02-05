@@ -9,21 +9,6 @@
 <link rel="stylesheet" type="text/css" href="/staticFiles/style.css">
 </head>
 
-<script>
-    const processing_url = {{ url_for("processing")|tojson}}
-    fetch(processing_url)
-    .then(response => response.json())
-    .then(data => {
-        for (var key in data){
-            const para = document.createElement("p");
-            const node = document.createTextNode(data[key]);
-            para.appendChild(node);
-
-            const element = document.getElementById("Textbox");
-            element.appendChild(para);
-        }
-    })
-</script>
 <body>
     <div id="Wrapper">
         <div class="A" id="Left">
@@ -42,5 +27,21 @@
         </div>
     </div>
 </body>
+<script>
+    const processing_url = {{ url_for("processing")|tojson}}
+    fetch(processing_url)
+        .then(response => response.json())
+        .then(data => {
+            console.log("Gets data!")
+            for (var key in data){
+                const para = document.createElement("p");
+                const node = document.createTextNode(data[key]);
+                para.appendChild(node);
+
+                const element = document.getElementById("Textbox");
+                element.appendChild(para);
+            }
+        })
+</script>
 
 </html>

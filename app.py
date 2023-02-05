@@ -3,8 +3,9 @@ from flask import url_for
 from flask import render_template
 from flask import request
 from flask import redirect
-from flask import Response
+from flask import Response, jsonify
 from webcam import get_brandname
+import sys
 import webcam
 import cv2
 from get_report import get_report
@@ -18,13 +19,15 @@ app = Flask(__name__, static_folder='staticFiles')
 def welcome():
     return render_template('camera.html')
 
-@app.route('/processing')
+@app.route('/processing', methods=['GET'])
 def processing():
-    # input_json = request.json
+    input_json = request.json
+    print("Received GET request:", file=sys.stdout)
+    print(input_json, file=sys.stdout)
     if old_brand_name != get_brandname():
         old_brand_name = get_brandname()
-        return get_report(old_brand_name)
-    return
+        return jsonify(get_report(old_brand_name))
+    return jsonify({})
 
 @app.route('/video_feed')
 def video_feed():
