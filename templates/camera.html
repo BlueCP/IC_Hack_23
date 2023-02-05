@@ -41,9 +41,9 @@
     var time = 5000;
 
     names = {
-        'trans_score' : "Transparancy index (lower is better):",
-        'wiki_score' : "Controversy index (lower is better):",
-        'CO2_score' : "Carbon emmision index (lower is better):",
+        'trans_score' : "Transparancy index:",
+        'wiki_score' : "Social sustainability index:",
+        'CO2_score' : "Carbon emmision index:",
         'mean_score' : "Overall sunstainability score:"
     }
 
@@ -53,10 +53,10 @@
             $('#quote').empty();
             $('#quote').append('<h2>' + dat['name'] + '</h2>')
             if (Math.round(dat['mean_score'] * 100) != 0) {
-                // $('#quote').append('<h3> Overall sustainability score: ' + Math.round(dat['mean_score'] * 100) + ' out of 100</h3>')
+                $('#quote').append('<h3> Overall sustainability score: ' +dat['mean_score'] + ' out of 100</h3>')
                 for (let m in dat) {
                     if (dat[m] != null && Number.isInteger(Math.round(dat[m]* 100)))
-                        $('#quote').append('<p class="C">' + names[m] + " " + Math.round(dat[m] * 100)  + ' out of 100</p>')
+                        $('#quote').append('<p class="C">' + names[m] + " " dat[m] + ' out of 100</p>')
                 }
             } else {
                 $('#quote').append('<h3>No data available for this company</h3>')

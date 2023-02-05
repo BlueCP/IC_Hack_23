@@ -12,9 +12,9 @@ def get_report(brand_name):
 
     scores = [transparency_score, wiki_score]
     if transparency_score is not None:
-        score_map['trans_score'] = transparency_score
+        score_map['trans_score'] = int (transparency_score * 100)
     if wiki_score is not None:
-        score_map['wiki_score'] = wiki_score
+        score_map['wiki_score'] = int (wiki_score * 100)
 
     print(wiki_score, file=sys.stdout)
 
@@ -22,7 +22,7 @@ def get_report(brand_name):
     existingScores = [x for x in scores if x is not None]
 
     if len(existingScores) > 0:
-        score_map['mean_score'] = 1 - np.mean(existingScores)
+        score_map['mean_score'] = np.mean(existingScores)
     else:
         score_map['mean_score'] = None
     return (score_map)
