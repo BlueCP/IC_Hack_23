@@ -5,7 +5,7 @@ from flask import request
 from flask import redirect
 from flask import  Response, request
 
-from logohunter_adapter import get_model#, predict_logo
+from logohunter_adapter import get_model
 
 import cv2
 import datetime, time

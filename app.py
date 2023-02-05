@@ -1,10 +1,17 @@
+import cv2
+
 from flask import Flask
 from flask import url_for
 from flask import render_template
 from flask import request
-from flask import redirect
+from flask import redirect, Response, request
+
+import webcam
 
 app = Flask(__name__)
+
+# webcam
+camera = cv2.VideoCapture(0)
 
 def handle_request(product_name):
     # Add more processing here in future.
@@ -21,4 +28,7 @@ def scanning():
 @app.route('/processing')
 def processing():
     input_json = request.json
-    
+
+@app.route('/video_feed')
+def video_feed():
+    return Response(webcam.gen_frames(camera), mimetype='multipart/x-mixed-replace; boundary=frame')
