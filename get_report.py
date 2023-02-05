@@ -11,6 +11,7 @@ def get_report(brand_name):
     
     add_score(score_map, "wiki_score", wiki_page_scrape, brand_name)
     add_score(score_map, "transparency_score", get_transparency_score, brand_name)
-    add_score(score_map, "footprint_score", get_footprint_score, brand_name)
+    score_map["average_score"] = (add_score["wiki_score"] + add_score["transparency_score"]) / 2.0
+    #add_score(score_map, "footprint_score", get_footprint_score, brand_name)
     
     return (score_map)
