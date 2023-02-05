@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 import requests
 import sys
 
-keywords = ["controversy", "mistreatment", "slavery", "child labor", "child labour", "abuse", "forced labor", "forced labour", "human rights", "sweatshops"]
+keywords = ["controversial", "controversy", "mistreatment", "slavery", "child labor", "child labour", "abuse", "forced labor", "forced labour", "human rights", "sweatshops"]
 
 def transformed_brand_name(_brand_name):
     new_name = _brand_name.lower().capitalize().replace(' ', '_').replace('&', '%26')
