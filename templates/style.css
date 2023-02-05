@@ -1,6 +1,7 @@
 h1 {
     text-align: center;
-    color: red;
+    color: blueviolet;
+    font-family: italic;
 } 
 
 body {
@@ -25,6 +26,7 @@ body {
 
   .C {
     position: fixed;
-    top: 40px;
+    top: 60px;
+    left: 40px;
     color: blue;
   }
