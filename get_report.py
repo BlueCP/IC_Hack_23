@@ -1,4 +1,3 @@
-from app import handle_request
 from WebScraping.wiki_page_scrape import wiki_page_scrape
 
 def add_score(score_map, score_name, func_name, brand_name):

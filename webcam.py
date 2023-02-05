@@ -67,7 +67,7 @@ def gen_frames(camera):  # generate frame by frame from camera
         cdf_list = yolo_mod['cdf_list']
         input_labels = yolo_mod['input_labels']
         try:
-            labels, bbox_list_list, frame = match_logo(image_array, out_pred,
+            labels, bbox_list_list, new_frame = match_logo(image_array, out_pred,
                                               (model, my_preprocess),
                                               "no",
                                               (feat_input, sim_cutoff,
@@ -75,13 +75,15 @@ def gen_frames(camera):  # generate frame by frame from camera
                                                input_labels),
                                               save_img=False,
                                               save_img_path=None)
+            frame = new_frame
         except Exception as e:
             print(f"Error: {e}", file=sys.stderr)
             continue
         # sort labels by highest confidence
         labels = sorted(labels, key=lambda x: x[1], reverse=True)
         print(f"PREDICT: {labels}", file=sys.stderr)
-        brand_name = labels[0][0]
+        if len(labels) > 0:
+            brand_name = labels[0][0]
 
         if success:
             if not processing_frame:
