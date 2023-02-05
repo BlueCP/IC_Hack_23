@@ -1,6 +1,6 @@
 h1 {
-    text-align: center;
-} 
+  text-align: center;
+}
 
 body {
   font-family: "Lucida Console", "Courier New", monospace;
@@ -14,25 +14,29 @@ body {
 .A {
   height: 100%;
 }
-  
-  .B {
-    color: white;
-    width: 90%;
-    height: 97%;
-    margin: auto;
-    box-shadow: -8px 8px 10px #33334d;
-    border-radius: 10px;
-    padding: 10px;
-    background-color: #00001a;
-   }
 
-  #Left {
-    width: 40%;
-    float: left;
-  }
+.B {
+  color: white;
+  width: 90%;
+  height: 97%;
+  margin: auto;
+  box-shadow: -8px 8px 10px #33334d;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #00001a;
+}
 
-  #Right {
-    width: 60%;
-    float: right;
-  }
+#Left {
+  width: 40%;
+  float: left;
+}
 
+#Right {
+  width: 60%;
+  float: right;
+}
+
+#Cam {
+  width: 90%;
+  margin: auto;
+}
