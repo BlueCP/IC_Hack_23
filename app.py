@@ -12,22 +12,13 @@ def handle_request(product_name):
 
 @app.route('/')
 def welcome():
-    return redirect(url_for('query'))
+    return redirect(url_for('scanning'))
 
-@app.route('/query')
-def query():
-    product_name = request.args.get('product_name', '')
-    if product_name != '':
-        handle_request(product_name)
-        return render_template('result.html', product_name=product_name)
-    else:
-        return render_template('query.html')
+@app.route('/scanning')
+def scanning():
+    return render_template('result.html')
 
-@app.route('/query/camera')
-def camera_query():
-    try:
-        f = request.files['image']
-        f.save('image.png')
-        return render_template('result.html', product_name='foo')
-    except:
-        return render_template('camera.html')
+@app.route('/processing')
+def processing():
+    input_json = request.json
+    
