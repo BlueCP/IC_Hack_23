@@ -13,6 +13,33 @@ def transformed_brand_name(_brand_name):
     print(new_name, file=sys.stdout)
     return new_name
 
+def headline_sentences(_brand_name):
+    brand_name = transformed_brand_name(_brand_name)
+    suffix = ""
+    if brand_name == "Nike":
+        suffix = "_(company)"
+        
+    if brand_name == "Walkers":
+        suffix = "_(snack_foods)"
+
+    response = requests.get(
+	    url=f"https://en.wikipedia.org/wiki/{brand_name}{suffix}",
+    )
+
+    if (response.status_code != 200): # Didn't find wiki link of brand name
+        return -1
+
+    soup = BeautifulSoup(response.content, "html.parser")
+    all_bad_sens = []
+    
+    for keyword in keywords:
+        bad_sens = soup.find_all(text=re.compile(fr'\b{keyword}\b'))
+        for sen in bad_sens:
+            if 20 <= len(sen) and len(sen) <= 240:
+                all_bad_sens.append(sen)
+    
+    return "..." + max(all_bad_sens, key = len) + "..."
+
 def wiki_page_scrape(_brand_name):
     brand_name = transformed_brand_name(_brand_name)
     suffix = ""
