@@ -50,3 +50,7 @@ def get_python_data():
 @app.route('/video_feed')
 def video_feed():
     return Response(webcam.gen_frames(camera), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+@app.route('/video_feed2')
+def video_feed2():
+    return Response(webcam.gen_frames2(camera), mimetype='multipart/x-mixed-replace; boundary=frame')

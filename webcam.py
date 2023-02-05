@@ -127,3 +127,19 @@ def gen_frames(camera):  # generate frame by frame from camera
         else:
             pass
     yolo.close_session()
+
+def gen_frames2(camera):
+    while True:
+        succes, frame = camera.read()
+        if not succes:
+            break
+
+        try:
+            ret, buffer = cv2.imencode('.jpg', frame)
+            # frame = cv2.imread(f"{p[:-4]}_logo.png")
+            # ret, buffer = cv2.imencode('.jpg', frame)
+            frame = buffer.tobytes()
+            yield (b'--frame\r\n'
+                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+        except Exception as e:
+            pass

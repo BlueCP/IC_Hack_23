@@ -11,8 +11,10 @@ def get_report(brand_name):
     wiki_score = wiki_page_scrape(brand_name)
 
     scores = [transparency_score, wiki_score]
-    score_map['trans_score'] = transparency_score
-    score_map['wiki_score'] = wiki_score
+    if transparency_score is not None:
+        score_map['trans_score'] = transparency_score
+    if wiki_score is not None:
+        score_map['wiki_score'] = wiki_score
 
     print(wiki_score, file=sys.stdout)
 

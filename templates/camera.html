@@ -26,7 +26,8 @@
         </div>
         <div class="A" id="Right">
         <div class="B">
-            <img id="Cam" src="{{ url_for('video_feed') }}">
+            <img id="Cam" width="100%" src="{{ url_for('video_feed2') }}">
+            <img id="Cam2" width="100%" src="{{ url_for('video_feed') }}">
         </div>
         </div>
     </div>
@@ -50,10 +51,15 @@
         $.get('/getpythondata', function(data) {
             dat = $.parseJSON(data)
             $('#quote').empty();
-            $('#quote').append('<h2>Sustainability metrics for' + dat['name'] + '</h2>')
-            for (let m in dat) {
-                if (dat[m] != null)
-                    $('#quote').append('<p class="C">' + names[m] + " " + Math.round(dat[m] * 10) / 10 + '</p>')
+            $('#quote').append('<h2>' + dat['name'] + '</h2>')
+            if (Math.round(dat['mean_score'] * 100) != 0) {
+                $('#quote').append('<h3> Overall sustainability score: ' + Math.round(dat['mean_score'] * 100) + ' out of 100</h3>')
+                for (let m in dat) {
+                    if (dat[m] != null && Number.isInteger(Math.round(dat[m]* 100)))
+                        $('#quote').append('<p class="C">' + names[m] + " " + Math.round(dat[m] * 100)  + ' out of 100</p>')
+                }
+            } else {
+                $('#quote').append('<h3>No data available for this company</h3>')
             }
         })
     }, time);
