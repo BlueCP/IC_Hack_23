@@ -50,10 +50,11 @@
         $.get('/getpythondata', function(data) {
             dat = $.parseJSON(data)
             $('#quote').empty();
-            $('#quote').append('<h2>Sustainability metrics for' + dat['name'] + '</h2>')
+            $('#quote').append('<h2 id="Brand"> dat['name'] </h2>')
+            $('#quote').append('<h3 id="Total""> dat['name'] </h3>')
             for (let m in dat) {
                 if (dat[m] != null)
-                    $('#quote').append('<p class="C">' + names[m] + " " + Math.round(dat[m] * 10) / 10 + '</p>')
+                    $('#quote').append('<p class="C">' + names[m] + " " + Math.round(dat[m] * 100) + "/100"'</p>')
             }
         })
     }, time);
