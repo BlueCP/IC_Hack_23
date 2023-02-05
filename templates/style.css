@@ -1,0 +1,23 @@
+h1 {
+    text-align: center;
+} 
+
+.A {
+    text-align: right;
+    right: 20px;
+    top: 100px;
+    background-color: yellow;
+  }
+  
+  .B {
+    text-align: right;
+    right: 20px;
+    top: 100px;
+    background-color: salmon;
+  }
+
+  .C {
+    position: fixed;
+    top: 80px;
+    background-color: blue;
+  }
