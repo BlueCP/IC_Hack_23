@@ -78,7 +78,9 @@ def gen_frames(camera):  # generate frame by frame from camera
             frame = new_frame
         except Exception as e:
             print(f"Error: {e}", file=sys.stderr)
-            continue
+            frame = frame[..., ::-1]
+            labels = []
+
         # sort labels by highest confidence
         labels = sorted(labels, key=lambda x: x[1], reverse=True)
         print(f"PREDICT: {labels}", file=sys.stderr)
