@@ -11,7 +11,7 @@ from get_report import get_report
 
 camera = cv2.VideoCapture(0)
 global old_brand_name
-ild_brand_name = ''
+old_brand_name = ''
 
 app = Flask(__name__, static_folder='staticFiles')
 
