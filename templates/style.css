@@ -1,23 +1,30 @@
 h1 {
     text-align: center;
+    color: red;
 } 
+
+body {
+    background-color: lightgreen;
+}
 
 .A {
     text-align: right;
     right: 20px;
     top: 100px;
-    background-color: yellow;
+    color: orange;
+    font-size: 40px;
   }
   
   .B {
     text-align: right;
     right: 20px;
     top: 100px;
-    background-color: salmon;
+    color: salmon;
+    font-size: 35px;
   }
 
   .C {
     position: fixed;
-    top: 80px;
-    background-color: blue;
+    top: 40px;
+    color: blue;
   }
