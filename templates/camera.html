@@ -6,23 +6,27 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title> Unsustainability Deleter </title>
-<link rel="stylesheet" type="text/css" href="/staticFiles/style.css">
+<link rel="stylesheet" type="text/css" href="../staticFiles/style.css">
 </head>
 
 <script>
     const processing_url = {{ url_for("processing")|tojson}}
-    fetch(processing_url)
-    .then(response => response.json())
-    .then(data => {
-        for (var key in data){
-            const para = document.createElement("p");
-            const node = document.createTextNode(data[key]);
-            para.appendChild(node);
+    var time = 1;
 
-            const element = document.getElementById("Textbox");
-            element.appendChild(para);
-        }
-    })
+    var interval = setInterval(function() {
+        fetch(processing_url)
+        .then(response => response.json())
+        .then(data => {
+            for (var key in data){
+                const para = document.createElement("p");
+                const node = document.createTextNode(data[key]);
+                para.appendChild(node);
+    
+                const element = document.getElementById("Textbox");
+                element.appendChild(para);
+            }
+        })
+    }, 5000);
 </script>
 <body>
     <div id="Wrapper">
