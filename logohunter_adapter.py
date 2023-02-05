@@ -27,7 +27,7 @@ def get_model(init=True):
     FLAGS['weights_path'] = os.path.join(src_dir, 'keras_yolo3', 'yolo_weights_logos.h5')
     FLAGS['anchors_path'] = os.path.join(src_dir, 'keras_yolo3', 'model_data', 'yolo_anchors.txt')
     FLAGS['classes_path'] = os.path.join(src_dir,  'data_classes.txt')
-    FLAGS['confidence'] = 0.7
+    FLAGS['confidence'] = 0.4
     # good default choices: inception_logo_features_200_trunc2, vgg16_logo_features_128
     FLAGS['features'] = os.path.join(src_dir, 'inception_logo_features_200_trunc2.hdf5')
     FLAGS['fpr'] = 0.95

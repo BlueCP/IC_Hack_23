@@ -41,10 +41,10 @@
     var time = 5000;
 
     names = {
-        'trans_score' : "Transparancy score:",
-        'wiki_score' : "Controversy score:",
-        'CO2_score' : "Carbon emmision score:",
-        'mean_score' : "Overall score:"
+        'trans_score' : "Transparancy index (lower is better):",
+        'wiki_score' : "Controversy index (lower is better):",
+        'CO2_score' : "Carbon emmision index (lower is better):",
+        'mean_score' : "Overall sunstainability score:"
     }
 
     var interval = setInterval(function() {
@@ -53,7 +53,7 @@
             $('#quote').empty();
             $('#quote').append('<h2>' + dat['name'] + '</h2>')
             if (Math.round(dat['mean_score'] * 100) != 0) {
-                $('#quote').append('<h3> Overall sustainability score: ' + Math.round(dat['mean_score'] * 100) + ' out of 100</h3>')
+                // $('#quote').append('<h3> Overall sustainability score: ' + Math.round(dat['mean_score'] * 100) + ' out of 100</h3>')
                 for (let m in dat) {
                     if (dat[m] != null && Number.isInteger(Math.round(dat[m]* 100)))
                         $('#quote').append('<p class="C">' + names[m] + " " + Math.round(dat[m] * 100)  + ' out of 100</p>')

@@ -22,7 +22,7 @@ def get_report(brand_name):
     existingScores = [x for x in scores if x is not None]
 
     if len(existingScores) > 0:
-        score_map['mean_score'] = np.mean(existingScores)
+        score_map['mean_score'] = 1 - np.mean(existingScores)
     else:
         score_map['mean_score'] = None
     return (score_map)

@@ -52,4 +52,4 @@ def wiki_page_scrape(_brand_name):
 def scoring_brand_algorithm(keywords_occurences):
     sumOccurences = sum(keywords_occurences.values())
     _lambda = 1
-    return _lambda * math.e ** (-_lambda * sumOccurences)
+    return 1-_lambda * math.e ** (-_lambda * sumOccurences)

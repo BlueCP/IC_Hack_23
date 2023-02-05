@@ -90,7 +90,7 @@ def gen_frames(camera):  # generate frame by frame from camera
             brand_name = labels[0][0]
             brand_name_buffer.append(labels[0][0])
             # brand name is most common brand among last 10 frames
-            if (len(brand_name_buffer) > 5):
+            if (len(brand_name_buffer) > 2):
                 brand_name_buffer.pop(0)
                 values, counts = np.unique(brand_name_buffer, return_counts=True)
                 ind = np.argmax(counts)
