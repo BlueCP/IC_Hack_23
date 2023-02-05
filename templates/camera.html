@@ -6,7 +6,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title> Unsustainability Deleter </title>
-<link rel="stylesheet" type="text/css" href="/staticFiles/style.css">
+<link rel="stylesheet" type="text/css" href="../staticFiles/style.css">
+<script src="jquery-3.6.1.min.js"></script>
 </head>
 
 <body>
@@ -14,11 +15,14 @@
         <div class="A" id="Left">
         <div class="B" id="Textbox">
             <h2 class="C">Quote from articles</h2>
-            <p class="C">Transparency Score: </p>
-            <p class="C">Wiki Score: </p>
-            <p class="C">CO2 Score: </p>
-            <p class="C">Average Score: </p>
+            <p class="C" id="trans">Transparency Score: </p>
+            <p class="C" id="wiki">Wiki Score: </p>
+            <p class="C" id="CO2">CO2 Score: </p>
+            <p class="C" id="mean">Average Score: </p>
         </div>
+        <form>
+            <input type="submit" value="Capture" name="click"/>
+        </form>
         </div>
         <div class="A" id="Right">
         <div class="B">
@@ -27,21 +31,27 @@
         </div>
     </div>
 </body>
-<script>
-    const processing_url = {{ url_for("processing")|tojson}}
-    fetch(processing_url)
-        .then(response => response.json())
-        .then(data => {
-            console.log("Gets data!")
-            for (var key in data){
-                const para = document.createElement("p");
-                const node = document.createTextNode(data[key]);
-                para.appendChild(node);
 
-                const element = document.getElementById("Textbox");
-                element.appendChild(para);
-            }
-        })
+
+
+<script>
+    // const processing_url = '/processing' //{{ url_for("processing")|tojson}}
+    // const processing_url = "{{ url_for('processing') }}"
+    var time = 5000;
+
+    var interval = setInterval(function() {
+        $.ajax({
+            url: url_for('tasks'),
+            method: "POST",
+            data: {}
+        }).done(function (data) {
+            // $('#div-id').html(data['val']);
+            // console.log(data['val'])
+            $('#wiki').html(data['val'])
+        }).fail(function (error) {
+            console.error(error);
+        });
+    }, time);
 </script>
 
 </html>
