@@ -9,25 +9,6 @@
 <link rel="stylesheet" type="text/css" href="../staticFiles/style.css">
 </head>
 
-<script>
-    const processing_url = {{ url_for("processing")|tojson}}
-    var time = 1;
-
-    var interval = setInterval(function() {
-        fetch("/processing")
-        .then(response => response.json())
-        .then(data => {
-            for (var key in data){
-                const para = document.createElement("p");
-                const node = document.createTextNode(data[key]);
-                para.appendChild(node);
-    
-                const element = document.getElementById("Textbox");
-                element.appendChild(para);
-            }
-        });
-    }, 5000);
-</script>
 <body>
     <div id="Wrapper">
         <div class="A" id="Left">
@@ -47,4 +28,24 @@
     </div>
 </body>
 
+<script>
+    const processing_url = {{ url_for("processing")| tojson}}
+    console.log(processing_url);
+    var time = 0;
+
+    var interval = setInterval(function() {
+        fetch(processing_url)
+        .then(response => response.json())
+        .then(data => {
+            for (var key in data){
+                const para = document.createElement("p");
+                const node = document.createTextNode(data[key]);
+                para.appendChild(node);
+    
+                const element = document.getElementById("Textbox");
+                element.appendChild(para);
+            }
+        });
+    }, 5000);
+</script>
 </html>
