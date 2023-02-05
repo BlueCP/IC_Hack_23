@@ -21,4 +21,13 @@ Three data source:
   * Looks up the climate change report and returns the letter score
 
 
+## Running the code
 
+Run the following script to download the weights for the brand logo recogniser `brand_recogniser_model/build/build.sh`.
+
+Install necessary python modules (or use `pip`):
+```
+conda install matplotlib keras=2.2.4 pillow scikit-learn
+conda install tensorflow-gpu
+conda install opencv=3.4.4`
+```
