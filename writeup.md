@@ -17,6 +17,7 @@ Our web application scans a branded product, identifies the company, and display
 - To recognise logos, we used a freely available logo detection API, which itself uses Keras, a high-level API for TensorFlow.
 
 ## How it works
+Show a product with a brand name in front of the camera, after sometime the application will show scores based on certain criteras (controversial, transparency, CO2 emission,...) and some headlines of controversies of the brand on the internet.
 
 ## Challenges
 
