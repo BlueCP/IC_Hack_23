@@ -4,7 +4,11 @@ import requests
 
 keywords = ["controversy", "mistreatment", "slavery", "child labor", "child labour", "abuse", "forced labor", "forced labour", "human rights", "sweatshops"]
 
-def headline_sentences(brand_name):
+def transformed_brand_name(_brand_name):
+    return _brand_name.lower().capitalize().replace(' ', '_').replace('&', '%26')
+
+def headline_sentences(_brand_name):
+    brand_name = transformed_brand_name(_brand_name)
     suffix = ""
     if brand_name == "Nike":
         suffix = "_(company)"
@@ -16,7 +20,7 @@ def headline_sentences(brand_name):
 	    url=f"https://en.wikipedia.org/wiki/{brand_name}{suffix}",
     )
 
-    if (response.status_code != 200):
+    if (response.status_code != 200): # Didn't find wiki link of brand name
         return -1
 
     soup = BeautifulSoup(response.content, "html.parser")
@@ -30,7 +34,8 @@ def headline_sentences(brand_name):
     
     return "..." + max(all_bad_sens, key = len) + "..."
 
-def wiki_page_scrape(brand_name):
+def wiki_page_scrape(_brand_name):
+    brand_name = transformed_brand_name(_brand_name)
     suffix = ""
     if brand_name == "Nike":
         suffix = "_(company)"
@@ -39,7 +44,7 @@ def wiki_page_scrape(brand_name):
 	    url=f"https://en.wikipedia.org/wiki/{brand_name}{suffix}",
     )
 
-    if (response.status_code != 200):
+    if (response.status_code != 200): # Didn't find wiki link of brand name
         return -1
 
     keywords_occurences = {}
