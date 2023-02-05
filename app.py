@@ -16,7 +16,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def welcome():
-    return redirect(url_for('scanning'))
+    return render_template('camera.html')
 
 @app.route('/processing')
 def processing():
