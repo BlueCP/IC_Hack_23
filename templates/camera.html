@@ -3,25 +3,30 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Unsustainability Deleter </title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title> Unsustainability Deleter </title>
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
-       <h1>Unsustainable Brand Deleter </h1>
-       <h2 class="A"> <em>Quote from articles </em></h2>
-       <p class="A"> "To be or not to be!" </p>
-       <h2 class="B"> <em> Scores </em></h2>
-       <li class="B">Transparency Score: </li>
-       <li class="B">Wiki Score: </li>
-       <li class="B">CO2 Score: </li>
-       <li class="B"><b>Average Score:</b> </li>
+    <div id="Wrapper">
+        <div class="A" id="Left">
+        <div class="B">
+            <h2 class="C">Quote from articles</h2>
+            <p class="C">Transparency Score: </p>
+            <p class="C">Wiki Score: </p>
+            <p class="C">CO2 Score: </p>
+            <p class="C">Average Score: </p>
+        </div>
+        </div>
 
-       
-       <img alt="Insert Image Here" src="https://www.w3.org/html/logo/downloads/HTML5_Logo_128.png" class = "C">
-
+        <div class="A" id="Right">
+        <div class="B">
+        <img src="{{ url_for('video_feed') }}">
+        </div>
+        </div>
+    </div>
 </body>
 
 </html>
