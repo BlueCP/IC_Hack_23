@@ -10,7 +10,8 @@ import cv2
 from get_report import get_report
 
 camera = cv2.VideoCapture(0)
-old_brand_name = ''
+global old_brand_name
+ild_brand_name = ''
 
 app = Flask(__name__, static_folder='staticFiles')
 
