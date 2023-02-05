@@ -5,7 +5,7 @@ import pandas as pd
 from WebScraping.wiki_page_scrape import wiki_page_scrape
 
 def get_report(brand_name):
-    score_map = {}
+    score_map = {'name' : brand_name }
 
     transparency_score = get_transparency_score(brand_name)
     wiki_score = wiki_page_scrape(brand_name)

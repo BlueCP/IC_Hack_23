@@ -7,18 +7,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title> Unsustainability Deleter </title>
 <link rel="stylesheet" type="text/css" href="../staticFiles/style.css">
-<script src="jquery-3.6.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
     <div id="Wrapper">
         <div class="A" id="Left">
         <div class="B" id="Textbox">
-            <h2 class="C">Quote from articles</h2>
-            <p class="C" id="trans">Transparency Score: </p>
-            <p class="C" id="wiki">Wiki Score: </p>
-            <p class="C" id="CO2">CO2 Score: </p>
-            <p class="C" id="mean">Average Score: </p>
+            <h2 class="C" id="quote">Quote from articles</h2>
+            <!-- <p class="C" id="trans_score">Transparency Score: </p> -->
+            <!-- <p class="C" id="wiki_score">Wiki Score: </p> -->
+            <!-- <p class="C" id="CO2_score">CO2 Score: </p> -->
+            <!-- <p class="C" id="mean_score">Average Score: </p> -->
         </div>
         <form>
             <input type="submit" value="Capture" name="click"/>
@@ -39,18 +39,23 @@
     // const processing_url = "{{ url_for('processing') }}"
     var time = 5000;
 
+    names = {
+        'trans_score' : "Transparancy score:",
+        'wiki_score' : "Controversy score:",
+        'CO2_score' : "Carbon emmision score:",
+        'mean_score' : "Overall score:"
+    }
+
     var interval = setInterval(function() {
-        $.ajax({
-            url: url_for('tasks'),
-            method: "POST",
-            data: {}
-        }).done(function (data) {
-            // $('#div-id').html(data['val']);
-            // console.log(data['val'])
-            $('#wiki').html(data['val'])
-        }).fail(function (error) {
-            console.error(error);
-        });
+        $.get('/getpythondata', function(data) {
+            dat = $.parseJSON(data)
+            $('#quote').empty();
+            $('#quote').append('<h2>Sustainability metrics for' + dat['name'] + '</h2>')
+            for (let m in dat) {
+                if (dat[m] != null)
+                    $('#quote').append('<p class="C">' + names[m] + " " + Math.round(dat[m] * 10) / 10 + '</p>')
+            }
+        })
     }, time);
 </script>
 

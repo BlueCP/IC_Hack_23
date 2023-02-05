@@ -23,9 +23,11 @@ except OSError as error:
 #instatiate flask app
 # app = Flask(__name__, template_folder='./templates')
 
-global processing_frame, counter, brand_name
+global processing_frame, counter, brand_name, brand_name_buffer
 processing_frame = False
+brand_name = "walkers"
 counter = 0
+brand_name_buffer = []
 
 # def record(out):
 #     global rec_frame
@@ -38,7 +40,7 @@ def get_brandname():
     return brand_name
 
 def gen_frames(camera):  # generate frame by frame from camera
-    global processing_frame, counter
+    global processing_frame, counter, brand_name_buffer, brand_name
 
     yolo_mod = get_model(init=True)
     yolo = yolo_mod['yolo']
@@ -86,6 +88,13 @@ def gen_frames(camera):  # generate frame by frame from camera
         print(f"PREDICT: {labels}", file=sys.stderr)
         if len(labels) > 0:
             brand_name = labels[0][0]
+            brand_name_buffer.append(labels[0][0])
+            # brand name is most common brand among last 10 frames
+            if (len(brand_name_buffer) > 5):
+                brand_name_buffer.pop(0)
+                values, counts = np.unique(brand_name_buffer, return_counts=True)
+                ind = np.argmax(counts)
+                brand_name = values[ind]
 
         if success:
             if not processing_frame:
