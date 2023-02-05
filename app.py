@@ -7,6 +7,7 @@ from flask import  Response, request
 from webcam import get_brandname
 import webcam
 import cv2 
+import get_report
 
 camera = cv2.VideoCapture(0)
 old_brand_name = ''
