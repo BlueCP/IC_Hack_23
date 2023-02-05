@@ -44,7 +44,7 @@ except OSError as error:
 
 #instatiate flask app  
 app = Flask(__name__, template_folder='./templates')
-
+import webcam
 camera = cv2.VideoCapture(0)
 
 def handle_request(product_name):

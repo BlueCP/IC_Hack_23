@@ -13,4 +13,4 @@ def get_report(brand_name):
     add_score(score_map, "transparency_score", get_transparency_score, brand_name)
     add_score(score_map, "footprint_score", get_footprint_score, brand_name)
     
-    handle_request(score_map)
+    return (score_map)

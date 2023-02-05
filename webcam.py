@@ -23,7 +23,7 @@ except OSError as error:
 #instatiate flask app
 # app = Flask(__name__, template_folder='./templates')
 
-global processing_frame, counter
+global processing_frame, counter, brand_name
 processing_frame = False
 counter = 0
 
@@ -32,6 +32,10 @@ counter = 0
 #     while(rec):
 #         time.sleep(0.05)
 #         out.write(rec_frame)
+
+def get_brandname():
+    global brand_name
+    return brand_name
 
 def gen_frames(camera):  # generate frame by frame from camera
     global processing_frame, counter
@@ -77,6 +81,7 @@ def gen_frames(camera):  # generate frame by frame from camera
         # sort labels by highest confidence
         labels = sorted(labels, key=lambda x: x[1], reverse=True)
         print(f"PREDICT: {labels}", file=sys.stderr)
+        brand_name = labels[0][0]
 
         if success:
             if not processing_frame:
