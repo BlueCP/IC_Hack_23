@@ -1,12 +1,13 @@
 # IC_Hack_23
 
+The source code for our team's submission to IC Hack 23. A web app that can scan an image of a product, identify brand logos, and look up the brands in a database to return 'ethics scores'. The aim is to help consumers make more conscientious decisions when shopping. Uses Flask for the backend, Keras for computer vision (brand logo recognition), and other libraries such as Pandas and Beautiful Soup for web scraping to generate ethics scores.
 
 
 ## Getting the static data
 
 
 
-Three data source:
+Three data sources:
 
 * Data source 1:
   * https://www.worldbenchmarkingalliance.org/publication/chrb/rankings/type/ungp/industry-apparel/
